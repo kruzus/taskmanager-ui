@@ -5,9 +5,11 @@ import Navbar from "../components/Navbar";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <> 
-    <Navbar />
-      <Component {...pageProps} />
+    <>
+      <Navbar />
+      <main className="container mx-auto px-8 py-8 bg-base-200 rounded-md">
+        <Component {...pageProps} />
+      </main>
     </>
   );
 }
