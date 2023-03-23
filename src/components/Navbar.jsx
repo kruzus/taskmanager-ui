@@ -2,35 +2,14 @@ import styles from "./navbar.module.scss";
 
 import Link from "next/link";
 
-// function Navbar() {
-//   return (
-//     <>
-//     <nav className={styles.navbarMenu}>
-//     <ul>
-//       <li>
-//         <Link href="/">Home</Link>
-//       </li>
-//       <li>
-//         <Link href="/profile">Profile</Link>
-//       </li>
-//       <li>
-//         <Link href="/tasks/new">Create</Link>
-//       </li>
-//       <li>
-//         <Link href="/tasks/completed">Completed</Link>
-//       </li>
-//     </ul>
-//     </nav>
-//     </>
-//   );
-// }
-
 function Navbar() {
   return (
     <>
       <div className="navbar">
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">TaskManager</a>
+          <a className="btn btn-ghost normal-case text-xl disabled">
+            TaskManager
+          </a>
         </div>
         <div className="flex-start">
           <ul className="menu menu-horizontal px-1">
@@ -39,6 +18,9 @@ function Navbar() {
             </li>
             <li>
               <Link href="/profile">Profile</Link>
+            </li>
+            <li>
+              <Link href="/edit">Edit Tasks</Link>
             </li>
             <li>
               <Link href="/tasks/new">Create</Link>

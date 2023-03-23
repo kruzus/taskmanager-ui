@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 
-const EDITPage = () => {
+const IDTask = () => {
   const router = useRouter().query ;
   const { task_ID  } = router;
 
 
-  return <p>EDIT ID: {task_ID}</p>;
+  return <p>Task ID: {task_ID}</p>;
 }
 
-export default EDITPage;
+export default IDTask;
