@@ -1,14 +1,27 @@
-import Head from 'next/head';
+import Head from "next/head";
+
+
+import UserCard from "../../components/UserCard";
+
+
+import img from "../../../public/anakin.png"
+
 
 export default function Profile() {
   return (
     <>
-     <Head>
+      <Head>
         <title>Profile Data</title>
       </Head>
-      <h1>Profile Data</h1>
+
+   
+<UserCard 
+avatarUrl={img}
+fullName={"Anakin Skywalker"}
+postCount={66}
+username={"ih8sand"}
+
+/>
     </>
   );
 }
-
-

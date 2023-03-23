@@ -1,6 +1,6 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import Head from "next/head";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent,  useState } from "react";
 
 export default function NewTask() {
   //ERROR
