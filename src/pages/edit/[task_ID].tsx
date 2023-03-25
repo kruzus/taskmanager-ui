@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router'
 
-const IDTask = () => {
-  const router = useRouter().query ;
-  const { task_ID  } = router;
+const Post = () => {
+  const router = useRouter()
+  const { task_ID } = router.query
 
-
-  return <p>Task ID: {task_ID}</p>;
+  return <p>{task_ID}</p>
 }
 
-export default IDTask;
+export default Post

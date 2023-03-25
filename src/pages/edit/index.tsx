@@ -40,6 +40,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Task } from '../../../interfaces/Task'; 
+import router from "next/router";
 
 
 const TasksList = () => {
@@ -49,6 +50,7 @@ const TasksList = () => {
     const getTasks = async () => {
       const response = await axios.get("http://localhost:8080/api/tasks/all");
       setTasks(response.data);
+      
     };
     getTasks();
   }, []);
@@ -56,7 +58,7 @@ const TasksList = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {tasks.map((task) => (
-        <div key={task.ID} className="bg-white shadow-md rounded-md p-4">
+        <div key={task.id} className="bg-white shadow-md rounded-md p-4">
           <h2 className="text-lg font-bold">{task.title}</h2>
           <p className="text-gray-600">{task.body}</p>
           <div className="flex justify-between items-center mt-4">
@@ -76,6 +78,12 @@ const TasksList = () => {
                 ? "Medium"
                 : "High"}
             </span>
+            <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        onClick={() => router.push(`edit/${task.id}`)}
+      >
+        Edit
+      </button>
           </div>
         </div>
       ))}

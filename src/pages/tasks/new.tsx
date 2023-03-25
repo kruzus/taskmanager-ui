@@ -17,7 +17,7 @@ export default function NewTask() {
     setSeverity(newSeverity);
   };
  
-
+ 
   const [dueDate, setDueDate] = useState<Date>(new Date());
 
   const TIME = moment(dueDate).format("h:mm A");
@@ -46,6 +46,11 @@ export default function NewTask() {
       // const response = await axios.post("http://localhost:8080/api/tasks/new", newTask);
       // console.log(response.data); // print response data
       // alert("Successfully posted!");
+
+
+      if (!newTask) {
+        alert("Write something")
+      }
 
       const resp = await axios.post("http://localhost:8080/api/tasks/new", newTask);
 
