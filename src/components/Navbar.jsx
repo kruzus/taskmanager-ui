@@ -1,50 +1,45 @@
 
 
 import Link from "next/link";
+import { useState } from 'react';
 
 function Navbar() {
+  const [navOpen, setNavOpen] = useState(false);
+
+  function toggleNav() {
+    setNavOpen(!navOpen);
+  }
+
   return (
-    <>
-      <div className="navbar">
-        <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl disabled">
-            TaskManager
-          </a>
-        </div>
-        <div className="flex-start">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/profile">Profile</Link>
-            </li>
-            <li>
-              <Link href="/edit">Edit Tasks</Link>
-            </li>
-            <li>
-              <Link href="/tasks/new">Create</Link>
-            </li>
-            <li>
-              <Link href="/tasks/completed">Completed</Link>
-            </li>
-            {
-              /* <li tabIndex={0}>
-        <a>
-          Parent
-          <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
-        </a>
-        <ul className="p-2 bg-base-100">
-          <li><a>Submenu 1</a></li>
-          <li><a>Submenu 2</a></li>
-        </ul>
-      </li> */
-            }
-          </ul>
-        </div>
+    <nav className="flex flex-wrap items-center justify-between p-4 bg-gray-900">
+      <div className="flex items-center">
+        <a href="#" className="text-white font-bold text-xl">Logo</a>
       </div>
-    </>
+      <button className="flex items-center px-3 py-2 border rounded text-gray-400 border-gray-400 hover:text-white hover:border-white lg:hidden" onClick={toggleNav}>
+        <svg className="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+      </button>
+      <div className={`flex-grow ${navOpen ? '' : 'hidden'} lg:flex lg:items-center lg:w-auto`} id="nav">
+        <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <li>
+              <Link className="text-white hover:text-gray-400 px-4 py-2 block" href="/">Home</Link>
+            </li>
+            <li>
+              <Link  className="text-white hover:text-gray-400 px-4 py-2 block" href="/profile">Profile</Link>
+            </li>
+            <li>
+              <Link className="text-white hover:text-gray-400 px-4 py-2 block" href="/edit">Edit Tasks</Link>
+            </li>
+            <li>
+              <Link className="text-white hover:text-gray-400 px-4 py-2 block" href="/tasks/new">Create</Link>
+            </li>
+            <li>
+              <Link className="text-white hover:text-gray-400 px-4 py-2 block" href="/tasks/completed">Completed</Link>
+            </li>
+        </ul>
+      </div>
+    </nav>
   );
 }
 
 export default Navbar;
+
