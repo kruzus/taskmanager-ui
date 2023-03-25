@@ -8,7 +8,7 @@ export default function Tasks() {
     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="p-4">
         <h2 className="text-xl font-semibold text-gray-800">Task 1</h2>
-        <p className="text-gray-700 mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla urna vel mauris rutrum imperdiet. </p>
+        <p className="text-gray-700 mt-2 truncate overflow-auto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla urna vel mauris rutrum imperdiet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla urna vel mauris rutrum imperdiet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla urna vel mauris rutrum imperdiet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla urna vel mauris rutrum imperdiet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla urna vel mauris rutrum imperdiet. </p>
         <div className="flex items-center justify-between mt-4">
           <span className="text-sm font-medium text-gray-500">Due date: 10/31/2023</span>
           <button className="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">Edit</button>
