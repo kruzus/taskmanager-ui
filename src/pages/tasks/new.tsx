@@ -24,30 +24,33 @@ export default function NewTask() {
 
   const DAT = moment(dueDate).format("dddd, MM/DD/YYYY");
 
-  const [data, setData] = useState<Task|undefined>();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   //event: FormEvent<HTMLFormElement>
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+
     const newTask: Task = {
      title: title,
      body: description,
      dueDate: DAT,
-     ID: 1,
      severity: severity,
      timePosted: TIME
     };
 
-    console.log(newTask);
+  
 
     try {
-      // const response = await axios.post("/api/tasks", newTask);
+      // const response = await axios.post("http://localhost:8080/api/tasks/new", newTask);
       // console.log(response.data); // print response data
       // alert("Successfully posted!");
 
-      setData(newTask)
+      const resp = await axios.post("http://localhost:8080/api/tasks/new", newTask);
+
+      console.log(resp.data)
+ 
       
     } catch (error: any) {
       console.error(error.message);
@@ -162,29 +165,12 @@ export default function NewTask() {
           </div>
         )}
       </div>
-    <TableExample 
-    ID={1}
-    body={data?.body}
-    dueDate={data?.dueDate}
-    title={data?.title}
-    timePosted={data?.timePosted}
-    severity={data?.severity}
-    key={1}
-    />
     </>
   );
 }
 
 
 
-function TableExample(data: Task) {
-  return (
-    <>
-<p className="whitespace-pre-wrap">{data.body}</p>
-       
-       </>     
-  );
-}
 
 
 // <DatePicker
