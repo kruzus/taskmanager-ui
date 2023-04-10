@@ -1,13 +1,12 @@
 import axios from "axios";
 import Head from "next/head";
-import React, { FormEvent,  useState } from "react";
-
-import {Task} from "../../../interfaces/Task"
-
+import React, { FormEvent, useState } from "react";
+import { Task } from "../../../interfaces/Task";
+import { toast, ToastContainer } from 'react-toastify';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
-
+import 'react-toastify/dist/ReactToastify.css';
 export default function NewTask() {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMsg] = useState("");
@@ -16,54 +15,73 @@ export default function NewTask() {
   const handleSeverityChange = (newSeverity: number): void => {
     setSeverity(newSeverity);
   };
- 
- 
+
   const [dueDate, setDueDate] = useState<Date>(new Date());
 
   const TIME = moment(dueDate).format("h:mm A");
 
   const DAT = moment(dueDate).format("dddd, MM/DD/YYYY");
 
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   //event: FormEvent<HTMLFormElement>
+
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-
     const newTask: Task = {
-     title: title,
-     body: description,
-     dueDate: DAT,
-     severity: severity,
-     timePosted: TIME
+      title: title,
+      body: description,
+      dueDate: DAT,
+      severity: severity,
+      timePosted: TIME,
+      id: 0,
     };
-
-  
 
     try {
       // const response = await axios.post("http://localhost:8080/api/tasks/new", newTask);
       // console.log(response.data); // print response data
       // alert("Successfully posted!");
 
-
-      if (!newTask) {
-        alert("Write something")
+      if (!newTask.body || !newTask.title) {
+        toast.error('Please enter something.', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+      } else {
+        const data = await axios.post(
+          "http://localhost:8080/api/tasks/new",
+          newTask,
+        );
+        toast.success('🦄 Wow so easy!', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+          //maybe use react forms or formik next time.
+          setTitle("");
+          setDescription("");
       }
-
-      const resp = await axios.post("http://localhost:8080/api/tasks/new", newTask);
-
-      console.log(resp.data)
- 
-      
+   
     } catch (error: any) {
       console.error(error.message);
       setErrorMsg(error.message);
       setError(true);
+   
     }
   };
-
 
   return (
     <>
@@ -123,7 +141,7 @@ export default function NewTask() {
               dateFormat="MM/dd/yyyy"
               placeholderText="Select due date"
             />
-           <SeveritySelector onSeverityChange={handleSeverityChange} />
+            <SeveritySelector onSeverityChange={handleSeverityChange} />
           </div>
           <div className="flex items-center justify-center">
             <button
@@ -135,7 +153,7 @@ export default function NewTask() {
           </div>
         </form>
       </div>
-
+      <ToastContainer />
       <div className="fixed bottom-4 right-4">
         {error && (
           <div className="alert alert-error shadow-lg">
@@ -170,13 +188,10 @@ export default function NewTask() {
           </div>
         )}
       </div>
+     
     </>
   );
 }
-
-
-
-
 
 // <DatePicker
 // className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -187,9 +202,7 @@ export default function NewTask() {
 // />
 // <SeveritySelector />
 
-
 interface SeveritySelectorProps {
-
   onSeverityChange: (severity: number) => void;
 }
 
